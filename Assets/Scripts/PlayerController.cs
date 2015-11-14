@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector2 odraz;
 
+	private AudioSource zvukFlapa;
+
 	public GameObject smrt;
 	
 
 	void Start()
 	{
+		zvukFlapa = this.GetComponent<AudioSource> ();
 		scoreManager = GameObject.Find ("Score").GetComponent<ScoreUpdate> ();
 		playerRB=this.GetComponent<Rigidbody2D>();
 		IsMoving = false;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) 
 		{
+			zvukFlapa.Play();
 			playerRB.AddForce(odraz);
 		}
 		if (playerRB.velocity.y > 0) 
